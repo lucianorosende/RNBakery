@@ -1,9 +1,9 @@
 import { styles } from "./styles"
-import { CategorieScreen, ProductDetailScreen, ProductScreen } from "./screens/index"
+import AppNavigator from "./navigation/index";
 
 const Root = () => {
   return (
-    <ProductScreen/>
+    <AppNavigator />
   );
 }
 
