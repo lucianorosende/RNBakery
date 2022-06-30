@@ -6,7 +6,8 @@ import Root from "./src/index"
 export default function App() {
 
   const [loaded] = useFonts({
-    "Staatliches": require("./assets/fonts/Staatliches-Regular.ttf")
+    "Staatliches": require("./assets/fonts/Staatliches-Regular.ttf"),
+    "SansPro": require("./assets/fonts/SourceSansPro-Regular.ttf"),
   });
 
   if(!loaded){

@@ -1,18 +1,17 @@
 import React from "react";
 import { Platform } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { ProductScreen, CategorieScreen, ProductDetailScreen } from "../screens/index";
+import { OrderScreen } from "../screens/index";
 import { colors } from "../constants/themes/colors"
 
 const Stack = createNativeStackNavigator();
 
 const isIOS = Platform.OS === "ios";
 
-
-const MainNavigator = () => {
+const OrderNavigator = () => {
     return (
         <Stack.Navigator 
-        initialRouteName="Categories"
+        initialRouteName="Orders"
         screenOptions={{
             headerStyle: {
                 backgroundColor: isIOS ? colors.primary : colors.secondary,
@@ -24,30 +23,15 @@ const MainNavigator = () => {
         }}
         >
             <Stack.Screen 
-            name="Categories" 
-            component={CategorieScreen}
+            name="Orders" 
+            component={OrderScreen}
             options={{
                 headerShown: false,
             }}
             />
-            <Stack.Screen 
-            name="Products" 
-            component={ProductScreen}
-            options={({ route }) => ({
-                title: route.params.title,
-
-            }) }
-            />
-            <Stack.Screen 
-            name="ProductDetail" 
-            component={ProductDetailScreen}
-            options={({ route }) => ({
-                title: route.params.name,
-
-            }) }
-            />
+            
         </Stack.Navigator>
     )
 }
 
-export default MainNavigator;
+export default OrderNavigator;
