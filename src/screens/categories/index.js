@@ -1,30 +1,30 @@
-import React from 'react';
-import { View, FlatList } from 'react-native';
-import { categories } from "../../data/categories"
-import { CategoryItem } from "../../components/index" 
-import {styles} from './styles';
+import React from "react";
+import { View, FlatList } from "react-native";
+import { categories } from "../../data/categories";
+import { CategoryItem } from "../../components/index";
+import { styles } from "./styles";
 
-const CategorieScreen = ({navigation}) => {
+const CategorieScreen = ({ navigation }) => {
+  const onSelected = (item) => {
+    navigation.navigate("Products", {
+      categoryId: item.id,
+      title: item.title,
+    });
+  };
 
-    const onSelected = (item) => {
-        navigation.navigate("Products", {
-            categoryId: item.id,
-            title: item.title
-        })
-    }
+  const renderItem = ({ item }) => (
+    <CategoryItem item={item} onSelected={onSelected}></CategoryItem>
+  );
 
-    const renderItem = ({item}) => (
-        <CategoryItem item={item} onSelected={onSelected}></CategoryItem>
-    )
-
-    return(
-        <View style={styles.container}>
-           <FlatList
-            data={categories}
-            renderItem={renderItem}
-            keyExtractor={(item) => item.id}></FlatList>
-        </View>
-    )
-}
+  return (
+    <View style={styles.container}>
+      <FlatList
+        data={categories}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.id}
+      ></FlatList>
+    </View>
+  );
+};
 
 export default CategorieScreen;
