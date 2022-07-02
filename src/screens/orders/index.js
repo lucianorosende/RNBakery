@@ -1,13 +1,15 @@
-import React from "react";
-import { View, Text } from "react-native";
-import { styles } from "./styles";
+import { StatusBar } from "expo-status-bar"
+import { FlatList, Text, View } from "react-native"
+import { OrderItem } from "../../components/index"
+import { orders } from "../../data/orders"
+import {styles} from "./styles"
 
-const OrderScreen = () => {
-  return (
-    <View style={styles.container}>
-      <Text style={styles.text}>Order Screen</Text>
-    </View>
-  );
-};
+const OrdersScreen = ({ navigation }) => {
+    return (
+        <View style={styles.container}>
+            <FlatList data={orders} keyExtractor={(item) => item.id} renderItem={({ item }) => <OrderItem order={item} />} />
+        </View>
+    )
+}
 
-export default OrderScreen;
+export default OrdersScreen;
