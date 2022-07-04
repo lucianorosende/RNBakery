@@ -1,5 +1,7 @@
 import React from "react";
 import { ActivityIndicator } from "react-native";
+import { Provider } from "react-redux";
+import store from "./src/store";
 import { useFonts } from "expo-font";
 import Root from "./src/index";
 
@@ -13,5 +15,9 @@ export default function App() {
     return <ActivityIndicator />;
   }
 
-  return <Root />;
+  return (
+    <Provider store={store}>
+      <Root />
+    </Provider>
+  );
 }
