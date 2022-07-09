@@ -1,11 +1,17 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View, Text, Button } from "react-native";
+import { addItem } from "../../store/actions/cart.action";
+import { colors } from "../../constants/themes/colors";
 import { styles } from "./styles";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 const ProductDetailScreen = ({ route }) => {
-  const { productId } = route.params;
+  const dispatch = useDispatch();
   const product = useSelector((state) => state.products.selected);
+
+  const onHandleAddProduct = () => {
+    dispatch(addItem(product));
+  };
 
   return (
     <View style={styles.container}>
@@ -15,6 +21,12 @@ const ProductDetailScreen = ({ route }) => {
         <Text style={styles.text}>{product.description}</Text>
         <Text style={styles.text}>{product.weight}</Text>
         <Text style={styles.text}>$ {product.price}</Text>
+        <Button
+          color={colors.secondary}
+          style={styles.button}
+          title="Add to Cart"
+          onPress={() => onHandleAddProduct()}
+        ></Button>
       </View>
     </View>
   );
