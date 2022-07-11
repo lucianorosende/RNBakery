@@ -5,7 +5,7 @@ import { colors } from "../../constants/themes/colors";
 import { styles } from "./styles";
 import { useSelector, useDispatch } from "react-redux";
 
-const ProductDetailScreen = ({ route }) => {
+const ProductDetailScreen = () => {
   const dispatch = useDispatch();
   const product = useSelector((state) => state.products.selected);
 

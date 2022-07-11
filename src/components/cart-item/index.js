@@ -1,6 +1,6 @@
 import React from "react";
 import { TouchableOpacity, View, Text } from "react-native";
-import InoicIcons from "@expo/vector-icons/Ionicons";
+import IonicIcons from "@expo/vector-icons/Ionicons";
 import { styles } from "./styles";
 import { colors } from "../../constants/themes/colors";
 
@@ -16,7 +16,7 @@ const CartItem = ({ item, onDelete }) => {
           <Text style={styles.detailPrice}>${item.price}</Text>
         </View>
         <TouchableOpacity onPress={() => onDelete(item.id)}>
-          <InoicIcons name="trash" size={20} color={colors.secondary} />
+          <IonicIcons name="trash" size={20} color={colors.secondary} />
         </TouchableOpacity>
       </View>
     </View>

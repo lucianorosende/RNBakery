@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, FlatList, TouchableOpacity } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
-import { removeItem } from "../../store/actions/cart.action";
+import { removeItem, confirmCart } from "../../store/actions/cart.action";
 import { CartItem } from "../../components/index";
 import { styles } from "./styles";
 
@@ -13,7 +13,7 @@ const CartScreen = () => {
     dispatch(removeItem(id));
   };
   const onHandleConfirm = () => {
-    console.log("Confirm Cart");
+    dispatch(confirmCart(cart, total));
   };
 
   const renderItem = ({ item }) => (

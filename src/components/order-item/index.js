@@ -3,19 +3,26 @@ import { TouchableOpacity, View, Text } from "react-native";
 import styles from "./styles";
 import { colors } from "../../constants/themes/colors";
 
-const OrderItem = ({ order }) => {
+const formatDate = (time) => {
+  const date = new Date(time);
+  return date.toLocaleDateString();
+};
+
+const OrderItem = ({ order, onDelete }) => {
   return (
-    <TouchableOpacity style={styles.container}>
-      <View style={styles.dateContainer}>
-        <Text style={styles.dateText}>{order.date}</Text>
+    <View style={styles.container}>
+      <View style={styles.headerContainer}>
+        <Text style={styles.header}>{formatDate(order.date)}</Text>
       </View>
-      <View style={styles.statusContainer}>
-        <Text style={styles.statusText}>{order.status}</Text>
+      <View style={styles.detailContainer}>
+        <View style={styles.detail}>
+          <Text style={styles.total}>Total: ${order.total}</Text>
+        </View>
+        <TouchableOpacity onPress={() => onDelete(order.id)}>
+          <IonicIcons name="trash" size={20} color={colors.primary} />
+        </TouchableOpacity>
       </View>
-      <View style={styles.statusContainer}>
-        <IonicIcons name="ios-arrow-forward" size={20} color={colors.primary} />
-      </View>
-    </TouchableOpacity>
+    </View>
   );
 };
 
