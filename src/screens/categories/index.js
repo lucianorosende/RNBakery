@@ -1,5 +1,5 @@
 import React from "react";
-import { View, FlatList } from "react-native";
+import { View, FlatList, SafeAreaView } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 import { selectCategory } from "../../store/actions/category.action";
 import { CategoryItem } from "../../components/index";
@@ -25,6 +25,7 @@ const CategorieScreen = ({ navigation }) => {
   );
 
   return (
+    <SafeAreaView style={{ flex: 1}}>
     <View style={styles.container}>
       <FlatList
         data={categories}
@@ -32,6 +33,7 @@ const CategorieScreen = ({ navigation }) => {
         keyExtractor={(item) => item.id}
       ></FlatList>
     </View>
+    </SafeAreaView>
   );
 };
 

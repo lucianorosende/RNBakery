@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, FlatList, TouchableOpacity } from "react-native";
+import { View, Text, FlatList, TouchableOpacity, SafeAreaView } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 import { removeItem, confirmCart } from "../../store/actions/cart.action";
 import { CartItem } from "../../components/index";
@@ -21,6 +21,7 @@ const CartScreen = () => {
   );
 
   return (
+    <SafeAreaView style={{ flex: 1}}>
     <View style={styles.container}>
       <View style={styles.containerList}>
         <FlatList
@@ -42,6 +43,7 @@ const CartScreen = () => {
         </TouchableOpacity>
       </View>
     </View>
+    </SafeAreaView>
   );
 };
 
