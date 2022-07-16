@@ -1,17 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
+import { useSelector } from "react-redux";
 import MainNavigator from "./main";
 import { SafeAreaView } from "react-native-safe-area-context";
 import TabNavigator from "./tab";
 import AuthNavigator from "./auth";
 
 const AppNavigator = () => {
-  const [user, setUser] = useState(null);
+  const userId = useSelector((state) => state.auth.userId);
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <NavigationContainer>
-        {user ? <TabNavigator /> : <AuthNavigator />}
+        {userId ? <TabNavigator /> : <AuthNavigator />}
       </NavigationContainer>
     </SafeAreaView>
   );

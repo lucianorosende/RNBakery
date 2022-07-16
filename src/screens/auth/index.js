@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -7,45 +7,78 @@ import {
   KeyboardAvoidingView,
   TouchableOpacity,
 } from "react-native";
+import { useDispatch } from "react-redux";
+import { Input } from "../../components/index";
+import { signUp, signIn } from "../../store/actions/auth.action";
 import { colors } from "../../constants/themes/colors";
 import { styles } from "./styles";
 
 const AuthScreen = () => {
-  const title = "Register";
-  const message = "Do you want to register?";
-  const messageAction = "login";
-  const messageTarget = "login";
+  const dispatch = useDispatch();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [isLogin, setIsLogin] = useState(true);
+  const title = isLogin ? "Login" : "Register";
+  const message = isLogin
+    ? "Don't you have an account?"
+    : "Do you have an account?";
+  const messageAction = isLogin ? "Register" : "Login";
+
+  const onHandleAuth = () => {
+    dispatch(isLogin ? signIn(email, password) : signUp(email, password));
+  };
+
+  const onHandleChange = (text, type) => {
+    if (type === "email") {
+      setEmail(text);
+    } else {
+      setPassword(text);
+    }
+  };
+  const handleChangeAuth = () => {
+    setPassword("");
+    setEmail("");
+    setIsLogin(!isLogin);
+  };
 
   return (
     <KeyboardAvoidingView style={styles.containerKeyboard} behavior="height">
       <View style={styles.container}>
         <Text style={styles.title}>{title}</Text>
-        <Text style={styles.label}>Email</Text>
-        <TextInput
-          style={styles.input}
+
+        <Input
           placeholder="example@example.com"
           placeholderTextColor={colors.text}
           autoCapitalize="none"
           autoCorrect={false}
-          keyboardType="email-adress"
+          keyboardType="email-address"
+          onChangeText={(text) => onHandleChange(text, "email")}
+          value={email}
+          label="Email"
         />
-        <Text style={styles.label}>Password</Text>
-        <TextInput
-          style={styles.input}
+
+        <Input
           placeholder="********"
           placeholderTextColor={colors.text}
           autoCapitalize="none"
           autoCorrect={false}
           secureTextEntry={true}
+          onChangeText={(text) => onHandleChange(text, "password")}
+          value={password}
+          label="password"
         />
-
+        <Button
+          title={title}
+          color={colors.primary}
+          onPress={onHandleAuth}
+          style={styles.buttonContainer}
+        />
         <View style={styles.prompt}>
           <Text style={styles.promptMessage}>{message}</Text>
-          <TouchableOpacity onPress={() => console.log(messageTarget)}>
+          <TouchableOpacity onPress={handleChangeAuth}>
             <Text style={styles.promptButton}>{messageAction}</Text>
           </TouchableOpacity>
         </View>
-        <Button title={title} color={colors.primary} onPress={() => null} />
       </View>
     </KeyboardAvoidingView>
   );

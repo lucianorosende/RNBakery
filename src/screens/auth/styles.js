@@ -8,6 +8,7 @@ export const styles = StyleSheet.create({
     alignItems: "center",
   },
   container: {
+    height: 300,
     width: "80%",
     maxWidth: 400,
     padding: 15,
@@ -21,7 +22,7 @@ export const styles = StyleSheet.create({
     height: 40,
     borderBottomColor: colors.primary,
     borderBottomWidth: 1,
-    width: "90%",
+    marginBottom: 10,
   },
   label: {
     fontSize: 14,
