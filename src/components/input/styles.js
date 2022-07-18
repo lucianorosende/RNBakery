@@ -13,7 +13,7 @@ export const styles = StyleSheet.create({
         marginBottom: 5,
     },
     message: {
-        marginVertical: 0
+        paddingVertical: 5
     },
     helperText: {
         fontFamily: "Staatliches",
